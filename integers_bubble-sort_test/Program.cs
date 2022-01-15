@@ -2,118 +2,127 @@
 
 namespace IntegersBubbleSort // Note: actual namespace depends on the project name.
 {
-     class Bubble
+    class Bubble
     {
         static void Main(string[] args)
         {
-            int[] array = { 5, 4, 2, 1, 3 };
+            int[] intArray = { 5, 4, 2, 1, 3 };
 
-            Console.WriteLine("Unordered Array.");
-            printArray(array);
+            Console.WriteLine("Unordered integer array.");
+            printAnyArray(intArray);
 
-            Console.WriteLine("Forward order.");
-            BubbleSort(array);
-            printArray(array);
+            Console.WriteLine("Forward order for integer array.");
+            OneBubbleSort(intArray: intArray);
+            printAnyArray(intArray);
 
-            Console.WriteLine("Reverse Order");
-            ReverseBubbleSort(array);
-            printArray(array);
+            Console.WriteLine("Reverse for integer Order");
+            OneReverseBubbleSort(intArray: intArray);
+            printAnyArray(intArray);
 
-            char[] array2 = { 'a', 'd', 'c', 'b','e' };
-            printCharArray(array2);
+            char[] chArray = { 'a', 'd', 'c', 'b', 'e' };
+            Console.WriteLine("Unordered character array.");
+            printAnyArray(chArray: chArray);
 
-            BubbleCharSort(array2);
-            printCharArray(array2);
+            Console.WriteLine("Forward character order.");
+            OneBubbleSort(chArray: chArray);
+            printAnyArray(chArray: chArray);
 
-            ReverseBubbleCharSort(array2);
-            printCharArray(array2);
+            Console.WriteLine("Reverse character order.");
+            OneReverseBubbleSort(chArray: chArray);
+            printAnyArray(chArray: chArray);
 
             Console.Read();
 
         }
 
-        static void printArray(int[] array)
+        static void printAnyArray(int[] intArray = null,   Char[] chArray = null)
         {
-            Console.WriteLine("Printing your array:");
-            foreach (int p in array)
-                Console.Write(p + " ");
-            Console.WriteLine("");
+            if (intArray != null)
+            {
+                var str = String.Join(",", intArray);
+                Console.WriteLine(str);
+            }
+
+            if (chArray != null)
+            {
+                var str = String.Join(",", chArray);
+                Console.WriteLine(str);
+            }
         }
 
-        static void BubbleSort(int[] array)
+        static void OneBubbleSort(char[] chArray = null , int[] intArray = null)
         {
-            int temp;
-            for (int j = 0; j <= array.Length - 2; j++)
+            if (chArray != null)
             {
-                for (int i = 0; i <= array.Length - 2; i++)
+                Char temp;
+
+                // Sorting strings using bubble sort
+                for (int j = 0; j < chArray.Length - 1; j++)
                 {
-                    if (array[i] > array[i + 1])
+                    for (int i = j + 1; i < chArray.Length; i++)
                     {
-                        temp = array[i + 1];
-                        array[i + 1] = array[i];
-                        array[i] = temp;
+                        if (chArray[j].CompareTo(chArray[i]) > 0)
+                        {
+                            temp = chArray[j];
+                            chArray[j] = chArray[i];
+                            chArray[i] = temp;
+                        }
+                    }
+                }
+            }
+
+            if (intArray != null)
+            {
+                int temp;
+                for (int j = 0; j <= intArray.Length - 2; j++)
+                {
+                    for (int i = 0; i <= intArray.Length - 2; i++)
+                    {
+                        if (intArray[i] > intArray[i + 1])
+                        {
+                            temp = intArray[i + 1];
+                            intArray[i + 1] = intArray[i];
+                            intArray[i] = temp;
+                        }
                     }
                 }
             }
         }
 
-        static void ReverseBubbleSort(int[] array)
+        static void OneReverseBubbleSort(char[] chArray = null, int[] intArray = null)
         {
-            int temp;
-            for (int j = 0; j <= array.Length - 2; j++)
+            if (chArray != null)
             {
-                for (int i = 0; i <= array.Length - 2; i++)
+                Char temp;
+
+                // Sorting strings using bubble sort
+                for (int j = 0; j < chArray.Length - 1; j++)
                 {
-                    if (array[i] < array[i + 1]) //just reverse the comparison to print it backwards
+                    for (int i = j + 1; i < chArray.Length; i++)
                     {
-                        temp = array[i + 1];
-                        array[i + 1] = array[i];
-                        array[i] = temp;
+                        if (chArray[i].CompareTo(chArray[j]) > 0)
+                        {
+                            temp = chArray[i];
+                            chArray[i] = chArray[j];
+                            chArray[j] = temp;
+                        }
                     }
                 }
             }
-        }
 
-        static void printCharArray(Char[] array)
-        {
-            Console.WriteLine("Printing your array:");
-            foreach (Char p in array)
-                Console.Write(p + " ");
-            Console.WriteLine("");
-        }
-
-        public static void BubbleCharSort(Char[] array)
-        {
-            Char temp;
-
-            // Sorting strings using bubble sort
-            for (int j = 0; j < array.Length - 1; j++)
+            if (intArray != null)
             {
-                for (int i = j + 1; i < array.Length; i++)
+                int temp;
+                for (int j = 0; j <= intArray.Length - 2; j++)
                 {
-                    if (array[j].CompareTo(array[i]) > 0)
+                    for (int i = 0; i <= intArray.Length - 2; i++)
                     {
-                        temp = array[j];
-                        array[j] = array[i];
-                        array[i] = temp;
-                    }
-                }
-            }
-        }
-        public static void ReverseBubbleCharSort(Char[] array)
-        {
-            Char temp;
-
-            // Sorting strings using bubble sort
-            for (int j = 0; j < array.Length - 1; j++)
-            {
-                for (int i = j + 1; i < array.Length; i++)
-                {
-                    if (array[i].CompareTo(array[j]) > 0)
-                    {
-                        temp = array[i];
-                        array[i] = array[j];
-                        array[j] = temp;
+                        if (intArray[i] < intArray[i + 1]) //just reverse the comparison to print it backwards
+                        {
+                            temp = intArray[i + 1];
+                            intArray[i + 1] = intArray[i];
+                            intArray[i] = temp;
+                        }
                     }
                 }
             }
